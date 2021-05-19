@@ -17,6 +17,8 @@ public class HudinNormal extends Estado {
 	@Override
 	public void recibirAtaque(Arma arma) {
 		this.personaje.reducirSalud(arma.getDaño());
+		if (this.personaje.getSalud() == 0)
+			this.personaje.getRaza().setEstado(new Muerto(personaje));
 	}
 
 	@Override

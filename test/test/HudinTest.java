@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import estados.HudinNormal;
 import estados.HudinPiedra;
+import estados.Muerto;
 import principal.Personaje;
 import razas.Hudin;
 import razas.Vainilla;
@@ -88,4 +89,13 @@ class HudinTest {
 		assertEquals(SALUD_MAXIMA_HUDIN - (ATAQUE_BASICO_VAINILLA * 3 / 4), hudin.getSalud());
 	}
 
+	@Test
+	void muertoTest() {
+		setUp();
+		vainilla.atacar(hudin);
+		vainilla.atacar(hudin);
+		hudin.descansar();
+		assertEquals(0, hudin.getSalud());
+		assertEquals(new Muerto(null), hudin.getRaza().getEstado());
+	}
 }

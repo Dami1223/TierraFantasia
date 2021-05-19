@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import estados.BixuverDescansado;
 import estados.BixuverNormal;
+import estados.Muerto;
 import principal.Personaje;
 import razas.Bixuver;
 import razas.Vainilla;
@@ -69,6 +70,21 @@ class BixuverTest {
 		vainilla.atacar(bixuver);
 		assertEquals(new BixuverNormal(null), bixuver.getRaza().getEstado());
 		assertEquals(SALUD_MAXIMA_BIXUVER - ATAQUE_BASICO_VAINILLA / (2.00 * 6.00), bixuver.getSalud());
+	}
+
+	@Test
+	void muertoTest() {
+		setUp();
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		bixuver.descansar();
+		assertEquals(0, bixuver.getSalud());
+		assertEquals(new Muerto(null), bixuver.getRaza().getEstado());
 	}
 
 }

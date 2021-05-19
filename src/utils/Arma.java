@@ -1,7 +1,6 @@
 package utils;
 
 import efectos.Efecto;
-import efectos.Veneno;
 
 public class Arma {
 
