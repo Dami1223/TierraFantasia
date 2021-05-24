@@ -48,4 +48,8 @@ public abstract class Raza {
 		this.estado = estado;
 	}
 
+	public void aumentarSaludMaxima(double aumento) {
+		this.saludMaxima += aumento;
+	}
+
 }

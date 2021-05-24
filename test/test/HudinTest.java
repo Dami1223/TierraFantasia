@@ -20,7 +20,7 @@ class HudinTest {
 	private static final double ATAQUE_BASICO_HUDIN = 49.00;
 	private static final double SALUD_MAXIMA_HUDIN = 196.00;
 	private static final double ATAQUE_BASICO_VAINILLA = 100;
-	private static final double SALUD_MAXIMA_VAINILLA = 100;
+	private static final double SALUD_MAXIMA_VAINILLA = 1000;
 	Personaje hudin;
 	Personaje vainilla;
 
@@ -90,12 +90,30 @@ class HudinTest {
 	}
 
 	@Test
-	void muertoTest() {
+	void muertoEnNormalTest() {
 		setUp();
 		vainilla.atacar(hudin);
 		vainilla.atacar(hudin);
 		hudin.descansar();
 		assertEquals(0, hudin.getSalud());
 		assertEquals(new Muerto(null), hudin.getRaza().getEstado());
+		hudin.atacar(vainilla);
+		assertEquals(SALUD_MAXIMA_VAINILLA, vainilla.getSalud());
 	}
+	
+	@Test
+	void muertoEnPiedraTest() {
+		setUp();
+		hudin.descansar();
+		assertEquals(new HudinPiedra(null), hudin.getRaza().getEstado());
+		vainilla.atacar(hudin);
+		vainilla.atacar(hudin);
+		vainilla.atacar(hudin);
+		hudin.descansar();
+		assertEquals(0, hudin.getSalud());
+		assertEquals(new Muerto(null), hudin.getRaza().getEstado());
+		hudin.atacar(vainilla);
+		assertEquals(SALUD_MAXIMA_VAINILLA, vainilla.getSalud());
+	}
+
 }

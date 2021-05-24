@@ -24,7 +24,9 @@ public class HudinPiedra extends Estado {
 	@Override
 	public void recibirAtaque(Arma arma) {
 		this.personaje.reducirSalud(arma.getDaño() * 3 / 4);
-		if (this.turnos == 0) {
+		if (this.personaje.getSalud() == 0)
+			this.personaje.getRaza().setEstado(new Muerto(personaje));
+		else if (this.turnos == 0) {
 			this.personaje.getRaza().setEstado(new HudinNormal(this.personaje));
 		} else
 			this.turnos--;

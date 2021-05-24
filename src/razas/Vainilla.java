@@ -7,7 +7,7 @@ import utils.Arma;
 public class Vainilla extends Raza {
 
 	public Vainilla(Personaje personaje) {
-		super(personaje, 100, new Arma("Azucar", 100, 0, 100,null), new Rica(personaje));
+		super(personaje, 1000, new Arma("Azucar", 100, 0, 100,null), new Rica(personaje));
 	}
 
 	@Override

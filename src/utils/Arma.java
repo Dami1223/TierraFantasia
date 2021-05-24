@@ -33,4 +33,12 @@ public class Arma {
 		return this.efecto;
 	}
 
+	public void setDaño(double daño) {
+		this.daño = daño;
+	}
+
+	public void aumentarDaño(int aumento) {
+		this.daño += aumento;
+	}
+
 }

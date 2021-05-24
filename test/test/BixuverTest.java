@@ -17,7 +17,7 @@ class BixuverTest {
 	private static final double ATAQUE_BASICO_BIXUVER = 87.00;
 	private static final double SALUD_MAXIMA_BIXUVER = 103.00;
 	private static final double ATAQUE_BASICO_VAINILLA = 100;
-	private static final double SALUD_MAXIMA_VAINILLA = 100;
+	private static final double SALUD_MAXIMA_VAINILLA = 1000;
 	Personaje bixuver;
 	Personaje vainilla;
 
@@ -73,7 +73,7 @@ class BixuverTest {
 	}
 
 	@Test
-	void muertoTest() {
+	void muertoEnNormalTest() {
 		setUp();
 		vainilla.atacar(bixuver);
 		vainilla.atacar(bixuver);
@@ -85,6 +85,27 @@ class BixuverTest {
 		bixuver.descansar();
 		assertEquals(0, bixuver.getSalud());
 		assertEquals(new Muerto(null), bixuver.getRaza().getEstado());
+		bixuver.atacar(vainilla);
+		assertEquals(SALUD_MAXIMA_VAINILLA, vainilla.getSalud());
+	}
+
+	@Test
+	void muertoEnDescansadoTest() {
+		setUp();
+		bixuver.descansar();
+		assertEquals(new BixuverDescansado(null), bixuver.getRaza().getEstado());
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		vainilla.atacar(bixuver);
+		bixuver.descansar();
+		assertEquals(0, bixuver.getSalud());
+		assertEquals(new Muerto(null), bixuver.getRaza().getEstado());
+		bixuver.atacar(vainilla);
+		assertEquals(SALUD_MAXIMA_VAINILLA, vainilla.getSalud());
 	}
 
 }
